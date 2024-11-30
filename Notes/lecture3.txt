@@ -1,0 +1,21 @@
+--> list all containers
+docker ps 
+
+--> list all images
+docker images 
+
+--> get the image of postgress
+docker pull postgres
+
+--> run the postgres images 
+docker run --name <contianer_name> -e <environment_vairbale> -p <host_ports:container_ports> -d <image>:<tag>
+docker run --name postgress-container  -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres
+
+--> help us to run some command inside a container 
+docker exec -it postgress-container psql -U postgres
+
+--> get logs of container 
+docker logs postgress-container
+
+--> to exit the container
+\q

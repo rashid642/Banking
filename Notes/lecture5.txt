@@ -1,0 +1,22 @@
+--> initialize sqlc, it create -> mount this file -> execute the command -> remove the container
+docker run --rm -v "C:\Users\Md. Rashid Aziz\Nawab\Learnings\Go Learning\Udemy\Banking:/src" -w /src sqlc/sqlc init
+
+--> A sqlc file will be generated 
+
+--> run go mod init
+go mod init github.com/rashid642/banking
+
+--> run 
+go mod tidy 
+
+--> sqlc only provide upper level function but to talk to database we need a database driver 
+go get github.com/lib/pq
+
+--> to test, go inside the directory and run  
+go test -v 
+
+--> Add testify pakacge
+go get github.com/stretchr/testify
+
+--> Only function with Test as a prefix are run 
+--> Main function is the main function from where the test starts

@@ -1,0 +1,9 @@
+Install WSL (Window Subsytem for linux)
+
+// linux username - rashid_aziz
+// linux password - 8063861
+
+To open linux shell search - Ubuntu 
+
+Install go -
+sudo snap install go --classic

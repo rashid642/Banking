@@ -1,0 +1,38 @@
+package main
+
+import "fmt"
+
+// Define a struct with some methods
+type Animal struct {
+	Name string
+}
+
+func (a *Animal) Speak() {
+	fmt.Println(a.Name, "says hello!")
+}
+
+func (a *Animal) Eat() {
+	fmt.Println(a.Name, "is eating.")
+}
+
+// Define another struct that embeds Animal
+type Dog struct {
+	*Animal
+	Breed string
+}
+
+func main() {
+	// Create an instance of Dog with an embedded Animal
+	dog := Dog{
+		Animal: &Animal{Name: "Buddy"},
+		Breed:  "Golden Retriever",
+	}
+
+	// Access methods of the embedded Animal struct
+	dog.Speak() // Output: Buddy says hello!
+	dog.Eat()   // Output: Buddy is eating.
+
+	// Access fields from both Dog and Animal
+	fmt.Println("Dog breed:", dog.Breed) // Output: Dog breed: Golden Retriever
+	fmt.Println("Dog name:", dog.Name)  // Output: Dog name: Buddy
+}

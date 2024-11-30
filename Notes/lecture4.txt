@@ -1,0 +1,49 @@
+Install migrate 
+
+--> Create migrate script
+migrate create -ext sql -dir Database/migration -seq init_schema
+
+--> to start the docker container back on 
+--> and start the bash shell 
+ docker exec -it postgress-container /bin/sh
+
+--> Connect with postgres 
+psql -U postgres
+
+--> Create user 
+create root with password 'secret'
+
+--> creating db 
+createdb --username=postgres --owner=postgres banking
+
+--> Create a postgres user in bashshell as root user exist 
+useradd <username>
+
+--> switch to postgress user 
+su postgress 
+
+--> connect with db and connect with it's console 
+psql banking
+
+--> to delete db 
+drop banking 
+
+--> to exit docker env 
+exit 
+
+--> directly creating db without going into container shell 
+docker exec -it postgress-container createdb --username=postgres --owner=postgres banking
+
+--> Create Makefile 
+--> this help to easily write the commands for team mates
+
+--> To stop the container 
+docker stop <container_name> 
+
+--> To remove the container 
+docker rm <container_name>
+
+--> Try creating container with different username and create a db with different and play
+
+--> Migrating the db 
+migrate -path Database/migration -database "postgresql://root:secret@localhost:5432/banking?sslmode=disable" -verbose up
