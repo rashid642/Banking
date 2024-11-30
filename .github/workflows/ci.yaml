@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI-TEST
 
 # Event : Which trigers this work flow, Controls when the workflow will run
