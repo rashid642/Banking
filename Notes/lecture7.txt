@@ -1,0 +1,20 @@
+--> Packages used 
+github.com/lib/pq v1.10.9 --> postgres driver 
+github.com/stretchr/testify v1.10.0 --> to test 
+github.com/spf13/viper v1.19.0 --> For env and conf variable
+github.com/gin-gonic/gin v1.10.0 --> For server 
+github.com/golang/mock/mockgen@v1.6.0 --> For mocking 
+
+
+--> Running mockgen using docker 
+docker pull golang:1.23
+
+--> execute mockgen inside the container
+docker run --rm `
+  -v "${PWD}:/app" `
+  -w /app `
+  golang:1.23 bash -c "
+  go install github.com/golang/mock/mockgen@v1.6.0 && \
+  /go/bin/mockgen -destination=Database/mock/store.go github.com/rashid642/banking/Database/sqlc Store
+  "
+

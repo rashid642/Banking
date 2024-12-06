@@ -17,9 +17,21 @@ migratedown:
 	migrate -path Database/migration -database "postgresql://root:secret@localhost:5432/banking?sslmode=disable" -verbose down
 
 makesqlc:
-	docker run --rm -v "C:\Users\Md. Rashid Aziz\Nawab\Learnings\Go Learning\Udemy\Banking:/src" -w /src sqlc/sqlc generate
+	docker run --rm -v "C:\Users\Md. Rashid Aziz\Nawab\Banking:/src" -w /src sqlc/sqlc generate
 
 test:
 	go test -v -cover ./...
+
+server:
+	go run main.go
+
+# mock: 
+# 	docker run --rm `
+#   	-v "${PWD}:/app" `
+#   	-w /app `
+#   	golang:1.23 bash -c "
+#   	go install github.com/golang/mock/mockgen@v1.6.0 && \
+#   	/go/bin/mockgen -destination=Database/mock/store.go github.com/rashid642/banking/Database/sqlc Store
+#   	"
 
 .PHONY: postgres stopPostgres createdb dropdb migrateup migratedown makesqlc test
