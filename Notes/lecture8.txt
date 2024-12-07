@@ -1,0 +1,25 @@
+--> Locks and Deadlocks
+
+If multiple transaction tries to getAccount and then update the balance
+It's possible that they read the same Balance 
+so if two transaction need to deduct 10 and 10 from a account 
+and current account balance is 100 
+as expected it should reduce to 80
+but it only goes to 90 
+
+as first transaction read 100 and reduces it to 90
+2nd transaction also read 100 and recdues it to 90 
+
+SELECT * FROM account 
+WHERE id = $1 LIMIT 1
+FOR NO KEY UPDATE;
+
+--> For update help us to block the other transaction from reading the amount when other transaction is going on 
+--> NO KEY Update help us to not to block the key from access, 
+--> Suppose if some other table has account id as foreign key then it will also not be able to access it 
+--> but as it has nothing to do with the balance it can update 
+--> so key isn't included here 
+
+One more dead lock condition is when 
+--> Update account1 and then account2 
+--> Update account2 and then account1 

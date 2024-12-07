@@ -1,4 +1,4 @@
--- name: CreateEntires :one
+-- name: CreateEntries :one
 INSERT INTO entries (
   account_id,
   amount

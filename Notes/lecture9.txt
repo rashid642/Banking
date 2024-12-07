@@ -1,0 +1,2 @@
+Craete users 
+--> migrate create  -ext sql -dir Database/migration -seq add_users

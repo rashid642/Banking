@@ -13,8 +13,14 @@ dropdb:
 migrateup:
 	migrate -path Database/migration -database "postgresql://root:secret@localhost:5432/banking?sslmode=disable" -verbose up
 
+migrateup1:
+	migrate -path Database/migration -database "postgresql://root:secret@localhost:5432/banking?sslmode=disable" -verbose up 1
+
 migratedown:
 	migrate -path Database/migration -database "postgresql://root:secret@localhost:5432/banking?sslmode=disable" -verbose down
+
+migratedown1:
+	migrate -path Database/migration -database "postgresql://root:secret@localhost:5432/banking?sslmode=disable" -verbose down 1
 
 makesqlc:
 	docker run --rm -v "C:\Users\Md. Rashid Aziz\Nawab\Banking:/src" -w /src sqlc/sqlc generate

@@ -1,0 +1,30 @@
+HTTP - 
+Server only send the data in plain text as it's received 
+
+HTTPS - 
+Encrypted, making it unreadable other than receiver and sender 
+
+TLS (Transport Layer security) - 
+
+
+TCP Handshake 
+1. TCP Sync (client to server) 
+2. TCP Sync+ack (server to client) 
+3. TCP Ack (client to server) 
+
+Certificate Check
+1. Client Hello (client to server)
+- Sends TLS version
+- Send cyber sweet 
+2. Server Hello (server to client) 
+3. Sends Certificate (server to client) 
+- It contains certificate 
+- And public key for encryption which can only be decrypted using private key 
+4. Server hello done 
+
+Key Exchange 
+1. Client Exchange key 
+2. and Change cipher spec 
+3. server send cipher spec 
+
+Data Transmission 

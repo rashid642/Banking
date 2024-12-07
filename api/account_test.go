@@ -89,7 +89,7 @@ func TestGetaccountAPI(t *testing.T) {
 			store := mock_sqlc.NewMockStore(ctrl) 
 			tc.buildStubs(store) 
 			
-			server := NewServer(store) 
+			server := newTestServer(t, store) 
 			recorder := httptest.NewRecorder() 
 	
 			url := fmt.Sprintf("/accounts/%d", tc.accountId) 
@@ -102,12 +102,6 @@ func TestGetaccountAPI(t *testing.T) {
 		})
 
 	}
-
-	
-	
-
-	
-	
 }
 
 func randomAccount() Database.Account {
