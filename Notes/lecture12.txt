@@ -1,0 +1,5 @@
+--> podman compose up to execute docker compose file
+podman compose up 
+
+--> Change mode of the start.sh to executable 
+chmod +x start.sh 
