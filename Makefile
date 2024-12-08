@@ -31,6 +31,14 @@ test:
 server:
 	go run main.go
 
+# remove all containers
+# rmAllCont:
+# 	docker rm -v -f $(docker ps -qa)
+
+# remove all images 
+# rmAllImg: 
+# 	docker rmi $(docker images -a -q)
+
 # mock: 
 # 	docker run --rm `
 #   	-v "${PWD}:/app" `
