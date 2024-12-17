@@ -1,0 +1,39 @@
+--> Building docker image
+docker build -t banking:latest .
+
+--> running this banking:latest image in banking container 
+docker run --name banking -p 8080:8080 -e GIN_MODE=release banking:latest
+
+--> to get inspect on contianers 
+docker container inspect <container_name> 
+
+--> Add db env with ip got from inspect 
+docker run --name banking -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE="postgresql://root:secret@10.88.0.48:5432/banking?sslmode=disable" banking:latest
+-->API's work after this 
+
+--> All the networks 
+docker network ls 
+
+--> Get inspect on the networks 
+docker network inspect <network name>
+
+--> Containers running on the same network can discover each other via name instead of IP Address 
+--> However it doesn't work for default brigde network 
+
+--> Create a new network 
+docker network create bank-network 
+
+--> Connect container to the network 
+docker network connect bank-network postgres
+
+--> It's okay to connect to multiple network to a single container 
+--> connecting to network via name of container 
+docker run --name banking --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE="postgresql://root:secret@postgres:5432/banking?sslmode=disable" banking:latest 
+
+
+Docker containers(is started seperately) can't directly communicate with each other just using containers name 
+But they can communicate with each other using the IP Addresses of each other 
+
+Otherwise u can create a network and add these containers in them and then they can communicate with each other using the name of the containers 
+
+Or else you can also use docker-compose which also create a common network on which they can communicate with each other.

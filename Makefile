@@ -31,6 +31,22 @@ test:
 server:
 	go run main.go
 
+proto:
+	proto-buf-exe/bin/protoc.exe --proto_path=proto --go_out=pb --go_opt=paths=source_relative \
+    --go-grpc_out=pb --go-grpc_opt=paths=source_relative \
+    proto/*.proto
+
+evans:
+	./evans --host localhost --port 9090 -r repl
+
+# remove all containers
+# rmAllCont:
+# 	docker rm -v -f $(docker ps -qa)
+
+# remove all images 
+# rmAllImg: 
+# 	docker rmi $(docker images -a -q)
+
 # mock: 
 # 	docker run --rm `
 #   	-v "${PWD}:/app" `
@@ -40,4 +56,4 @@ server:
 #   	/go/bin/mockgen -destination=Database/mock/store.go github.com/rashid642/banking/Database/sqlc Store
 #   	"
 
-.PHONY: postgres stopPostgres createdb dropdb migrateup migratedown makesqlc test
+.PHONY: postgres stopPostgres createdb dropdb migrateup migratedown makesqlc test proto

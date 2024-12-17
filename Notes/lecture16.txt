@@ -1,0 +1,4 @@
+--> To test grpc install evans 
+
+--> to run evens 
+./evans --host localhost --port 9090 -r repl
