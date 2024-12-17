@@ -1,0 +1,31 @@
+RPC - Remote procedure call 
+
+1. Define API and data structre
+The RPC and it's req/res structre are defined using protobuf 
+
+2. Generate gRPC stubs 
+Generate codes for the server and client in the language of your choice 
+
+3. Implement server 
+Implement the RPC handler on the server side 
+
+4. Use the client 
+
+Advantages
+1. High Performace
+ - binary framing 
+ - Multiplexing - combining multiple request into a single one 
+ - Compression
+ - Bidirectional commnunication 
+
+2. String API contract 
+ - Server and client share the same protobuf
+ - RPC definition with strongly typed data 
+
+3. Automatic generated code 
+
+Types of GRPC 
+1. Unary gRPC - Single request from both client and server 
+2. Client streaming gRPC - Client sends multiple streams of multiple messages 
+3. Server streaming gRPC - Client send single message and server reply with stream of multiple messages
+4. Bidirectional gRPC - Client and server both sends  stream of multiple messages 
