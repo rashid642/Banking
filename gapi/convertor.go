@@ -15,3 +15,5 @@ func convertUser(user Database.User) *pb.User {
 		CreatedAt:         timestamppb.New(user.CreatedAt.Time),
 	}
 }
+
+
