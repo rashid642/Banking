@@ -13,8 +13,6 @@ import (
 )
 
 func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (*pb.LoginUserResponse, error) {
-	// return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
-
 	user, err := server.store.GetUser(ctx, req.GetUserName())
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -55,14 +53,14 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 	}
 
 	res := &pb.LoginUserResponse{
-		SessionId: session.ID.String(),
-		AccessToken: accessToken,
-		AccessTokenExpiresAt: timestamppb.New(accessTokenPayload.ExpiredAt),
-		RefreshToken: refreshToken,
+		SessionId:             session.ID.String(),
+		AccessToken:           accessToken,
+		AccessTokenExpiresAt:  timestamppb.New(accessTokenPayload.ExpiredAt),
+		RefreshToken:          refreshToken,
 		RefreshTokenExpiresAt: timestamppb.New(refreshTokenPayload.ExpiredAt),
-		User: convertUser(user),
+		User:                  convertUser(user),
 	}
-	
-	return res, nil 
+
+	return res, nil
 
 }

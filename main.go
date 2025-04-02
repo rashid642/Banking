@@ -26,8 +26,8 @@ func main() {
 		log.Fatal("Cannot connect to database, error :", err)
 	}
 	store := db.NewStore(conn) 
-	// runGinServer(config, store)
-	runGrpcServer(config, store)
+	runGinServer(config, store)
+	// runGrpcServer(config, store)
 }
 
 func runGrpcServer(config utils.Config, store db.Store) {

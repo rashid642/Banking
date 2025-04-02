@@ -1,0 +1,41 @@
+--> gRPC Gateway
+A plugin of protobuf compiler 
+Gnerate proxy code from protobuf 
+
+
+
+                    Client 
+                |                  |
+            HTTP Request     JSON response
+                |                  |
+                    Gateway
+                       |
+      protobuf ---> Converts
+                       |
+                    Gateway
+                |                  |
+            GRPC Request     Binary response
+                |                  |
+                     Client
+
+gRPC Gateway is a plugin and framework that bridges the gap between gRPC and REST APIs. 
+It allows you to expose gRPC services as RESTful HTTP/JSON endpoints, making it easier to interact with gRPC
+services from clients that do not support gRPC natively
+
+--------------------------------------------------------------------------------------------------------------
+
+package tools
+
+import (
+    _ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway"
+    _ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2"
+    _ "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
+    _ "google.golang.org/protobuf/cmd/protoc-gen-go"
+)
+
+paste this in tool.go and run go mod tidy 
+
+go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway 
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
+    google.golang.org/protobuf/cmd/protoc-gen-go \
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc
