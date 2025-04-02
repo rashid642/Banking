@@ -1,24 +1,25 @@
-name: Deploy to production
+name: Deploy to Production
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   workflow_dispatch:
 
 jobs:
   build:
-    name: Build image 
+    name: Build Image
     runs-on: ubuntu-latest
     steps:
-      - name : Checkout code
-        uses : actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
+        id: aws-config
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1 
+          aws-region: ap-south-1
 
       - name: Login to Amazon ECR
         id: login-ecr
