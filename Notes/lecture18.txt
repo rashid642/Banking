@@ -1,0 +1,8 @@
+AWS - finally after alot of struggle i was able to create my AWS Account
+
+1. Select a region
+2. ECR - fully managed docker container registry, make easy to create and deploy docker container images
+3. Create repository in ECR
+4. Add github actions deploy.yaml 
+5. Go to IAM (Identity and Access Management) 
+6. Generate access key and secret key 

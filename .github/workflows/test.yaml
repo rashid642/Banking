@@ -1,4 +1,4 @@
-name: CI-TEST
+name: Run unit tests
 
 # Event : Which trigers this work flow, Controls when the workflow will run
 on:
