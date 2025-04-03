@@ -1,0 +1,38 @@
+AWS RDS
+
+Endpoint - 
+Username - root 
+RDS Password -
+
+We have to set some rules and make the access to it public as it's only allow you current IP Address
+
+Then change the end point and passowrd and run migrate up command 
+
+save the secret in aws secret manager
+
+Install aws cli for better control 
+use --> 'aws configure' --> to config aws 
+use 'cat  ~/.aws/credentials'  command to configure aws credentials
+use 'cat  ~/.aws/config' to get configs like region and output
+use 'aws secretsmanager help' for help to find secrets
+
+provide the permission to the user to access the secret and then use this command to access secrets 
+'aws secretsmanager get-secret-value --secret-id banking'
+
+you get json value but to access one of the value use this 
+'aws secretsmanager get-secret-value --secret-id banking --query SecretString'
+
+to convert string to json 
+'aws secretsmanager get-secret-value --secret-id banking --query SecretString --output text'
+
+Install jq to convert json and store these data into the env file 
+I installed jq binary 
+
+Use this command to convert secrets to string of array key=value form
+aws secretsmanager get-secret-value --secret-id banking --query SecretString --output text | ./jq 'to_entries|map(\"\(.key)=\(.value)\")'
+
+to remove array and keep it just as strings
+aws secretsmanager get-secret-value --secret-id banking --query SecretString --output text | ./jq 'to_entries|map(\"\(.key)=\(.value)\")|.[]'
+
+to remove double quotes in string and write it into the app.env file 
+aws secretsmanager get-secret-value --secret-id banking --query SecretString --output text | ./jq -r 'to_entries|map(\"\(.key)=\(.value)\")|.[]' > app.env 
