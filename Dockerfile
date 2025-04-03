@@ -26,6 +26,8 @@ RUN ls
 # Install netcat in the final image
 RUN apt-get update && apt-get install -y netcat
 
+RUN chmod +x /app/start.sh
+
 EXPOSE 8080 
 CMD ["/app/main"]
 ENTRYPOINT ["/app/start.sh"] 
