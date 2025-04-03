@@ -36,3 +36,20 @@ aws secretsmanager get-secret-value --secret-id banking --query SecretString --o
 
 to remove double quotes in string and write it into the app.env file 
 aws secretsmanager get-secret-value --secret-id banking --query SecretString --output text | ./jq -r 'to_entries|map(\"\(.key)=\(.value)\")|.[]' > app.env 
+
+Now use 'docker pull <image_uri>' to pull the image 
+but it will show no basic auth credentials as it's private repository
+to fix this, we have to login in ecr registry first in order to pull image 
+
+Use 'aws ecr get-login-password' to get the password 
+and use to login this 
+aws ecr get-login-password | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com 
+
+the fetched image do not run because it do not fetch env variable to run start.sh file which gives error 
+to fix this we add 'source app/app.env' in start.sh 
+as before we were adding this in docker-compose.yaml itself 
+
+
+
+
+
