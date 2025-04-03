@@ -49,3 +49,4 @@ the fetched image do not run because it do not fetch env variable to run start.s
 to fix this we add 'source app/app.env' in start.sh 
 as before we were adding this in docker-compose.yaml itself 
 
+docker run -p 8080:8080 <image_name>
